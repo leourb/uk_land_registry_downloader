@@ -56,5 +56,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-Please note that the package name (`uk-property-downloader`) in the `pip install` command and the `from uk_property_downloader import UKLandClient` import statement should match the name you've chosen for your package when creating it. 
-Adjust the package name and import statement accordingly.
+Please note that the package name (`uk-property-downloader`) in the `pip install` command and the `from uk_property_downloader import UKLandClient` import statement should match the name you've chosen for your package when creating it. Adjust the package name and import statement accordingly.
