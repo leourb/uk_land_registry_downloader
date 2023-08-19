@@ -25,7 +25,7 @@ Once you've installed the package, you can use it in your Python scripts as foll
 from uk_property_downloader import UKLandClient
 
 # Specify the UK postcode for which you want to download property transaction data
-postcode = "SW1A 1AA"  # Replace with your desired postcode
+postcode = "XXX YYY"  # Replace with your desired postcode
 
 # Initialize the UKLandClient with the specified postcode
 client = UKLandClient(postcode)
