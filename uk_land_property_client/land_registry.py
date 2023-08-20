@@ -60,6 +60,7 @@ class UKLandClient(Datashelf):
 
     def download_data(self) -> pd.DataFrame or dict[Any]:
         """Download the data from the url specified"""
+        self.selenium_driver.quit()
         csv_data = requests.get(self.target_url)
         return pd.read_csv(StringIO(csv_data.text))
 

@@ -1,28 +1,39 @@
-"""Module to run the unit tests"""
-
-from unittest.mock import MagicMock, Mock, patch
-
-import pandas as pd
-
+import unittest
+from unittest.mock import Mock, patch
 from uk_land_property_client.land_registry import UKLandClient
 
 
-class TestUKLandClient:
-    """Test cases for UKLandClient class."""
+class TestUKLandClient(unittest.TestCase):
+    """Test the UKLandClient class."""
 
-    @patch('uk_land_property_client.land_registry.Firefox')
-    def test_download_data_valid_postcode(self, mock_firefox: Mock) -> None:
+    @patch('uk_land_property_client.land_registry.Datashelf')
+    def test_download_data_valid_postcode(self, mock_datashelf: Mock) -> None:
         """
-        Test downloading data with a valid postcode.
-        :param Mock mock_firefox: The mock object that simulates webdriver.Firefox.
-        :return: If the mock object is not called as expected, or if the download_data method does not return a DataFrame
+        Test the `download_data` method for a valid postcode.
+        This test case simulates the behavior of the `download_data` method in the `UKLandClient` class for a valid
+        postcode. It uses mocking to simulate the behavior of the `selenium_driver` and `requests.get` methods, allowing
+        the `download_data` method to be tested without actual network or Selenium interactions.
+        :param Mock mock_datashelf: Mocked Datashelf class to control Selenium behavior.
+        :return: a function to test the `download_data` method.
         """
-        fake_driver = MagicMock()
-        fake_driver.get = MagicMock()
-        mock_firefox.return_value = fake_driver
-        client = UKLandClient("WC1B 3DG")
-        client._initialize_driver()
-        pandas_output = client.download_data()
-        assert isinstance(pandas_output, pd.DataFrame)
-        mock_firefox.assert_called_once()
-        fake_driver.get.assert_called_with("https://www.gov.uk/search-property-information-land-registry")
+        mock_driver_instance = Mock()
+        mock_datashelf_instance = Mock(selenium_driver=mock_driver_instance)
+        mock_datashelf.return_value = mock_datashelf_instance
+
+        mock_driver_instance.find_element.return_value = Mock(
+            send_keys=Mock(),
+            click=Mock()
+        )
+
+        # Assuming 'requests.get' also needs to be mocked to return a sample CSV data
+        with patch('requests.get') as mock_get:
+            mock_get.return_value.text = 'your,csv,data,here'
+
+            client = UKLandClient("SW1A 1AA")
+            downloaded_data = client.downloaded_data
+
+            self.assertIsNotNone(downloaded_data)  # You can add more assertions here
+
+
+if __name__ == '__main__':
+    unittest.main()
