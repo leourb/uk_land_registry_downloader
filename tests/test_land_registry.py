@@ -4,7 +4,7 @@ import pytest
 
 import pandas as pd
 
-from uk_land_property_client.land_registry import UKLandClient
+from ..uk_land_property_client.land_registry import UKLandClient
 
 
 class TestUKLandClient:
