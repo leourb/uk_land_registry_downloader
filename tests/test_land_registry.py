@@ -2,6 +2,8 @@
 
 from unittest.mock import MagicMock, Mock, patch
 
+import pandas as pd
+
 from uk_land_property_client.land_registry import UKLandClient
 
 
