@@ -1,9 +1,9 @@
 """Static Data Module"""
 
-from typing import Union
-
 import platform
 import re
+
+from typing import Union
 
 from selenium import webdriver
 from selenium.webdriver.chrome.webdriver import WebDriver as ChromeWebDriver
