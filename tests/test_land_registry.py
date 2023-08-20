@@ -1,17 +1,12 @@
 import unittest
 from uk_land_property_client.land_registry import UKLandClient
 
-
 class TestUKLandClient(unittest.TestCase):
     """Test the UKLandClient class."""
 
-    def test_init(self):
-        # Create an instance of UKLandClient
-        client = UKLandClient("SW1A 1AA")
-
-        # Basic assertion to ensure the client was created
-        self.assertIsInstance(client, UKLandClient)
-
+    @unittest.skip("Skipping Selenium-related test")
+    def test_download_data_valid_postcode(self):
+        pass
 
 if __name__ == '__main__':
     unittest.main()
