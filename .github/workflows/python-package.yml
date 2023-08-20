@@ -34,7 +34,7 @@ jobs:
         git add -f wheels/*.whl
         git commit -m "Add wheel artifacts"
         # use secrets.GITHUB_TOKEN instead of secrets.GH_TOKEN
-        git push https://${{ secrets.GITHUB_TOKEN }}@github HEAD:master
+        git push https://${{ secrets.GITHUB_TOKEN }}@github.com/leourb/uk_land_registry_downloader.git HEAD:master
 
     - uses: actions/upload-artifact@v2
       with:
