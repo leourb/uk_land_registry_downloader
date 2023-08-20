@@ -7,7 +7,6 @@ from typing import Union
 
 from selenium import webdriver
 from selenium.webdriver.chrome.webdriver import WebDriver as ChromeWebDriver
-from selenium.webdriver.firefox.webdriver import WebDriver as FirefoxWebDriver
 from selenium.webdriver.safari.webdriver import WebDriver as SafariWebDriver
 
 
@@ -18,23 +17,21 @@ class Datashelf:
         """
         Datashelf class constructor
         :param str postcode: Postcode to search property transactions for
-        :return: an intialized instance of the Datashelf class
+        :return: an initialized instance of the Datashelf class
         """
         self._selenium_driver = self._initialize_driver()
         self._main_url = 'https://landregistry.data.gov.uk/app/ppd'
 
     @staticmethod
-    def _initialize_driver() -> Union[SafariWebDriver, ChromeWebDriver, FirefoxWebDriver]:
+    def _initialize_driver() -> Union[SafariWebDriver, ChromeWebDriver]:
         """Initialize the Selenium browser by choosing the browser according to the OS"""
         if platform.system() == "Darwin":
             return webdriver.Safari()
-        elif platform.system() == "Windows":
+        else:
             return webdriver.Chrome()
-        elif platform.system() == "Linux":
-            return webdriver.Firefox()
 
     @property
-    def selenium_driver(self) -> Union[SafariWebDriver, ChromeWebDriver, FirefoxWebDriver]:
+    def selenium_driver(self) -> Union[SafariWebDriver, ChromeWebDriver]:
         """Returns the Selenium driver"""
         return self._selenium_driver
 
