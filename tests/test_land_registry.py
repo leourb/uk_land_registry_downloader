@@ -26,6 +26,3 @@ class TestUKLandClient:
         assert isinstance(pandas_output, pd.DataFrame)
         mock_firefox.assert_called_once()
         fake_driver.get.assert_called_with("https://www.gov.uk/search-property-information-land-registry")
-        fake_download_button = MagicMock()
-        fake_download_button.get_attribute.return_value = "https://example.com/download.csv"
-        fake_driver.find_elements.return_value = [fake_download_button]
