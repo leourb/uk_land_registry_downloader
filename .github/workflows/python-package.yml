@@ -3,7 +3,7 @@ name: Build Package
 on:
   push:
     branches:
-      - main
+      - master
   release:
     types:
       - published  
@@ -41,4 +41,4 @@ jobs:
       run: |
         git add wheels/*.whl
         git commit -m "Add wheel artifacts"
-        git push origin main
+        git push origin master
