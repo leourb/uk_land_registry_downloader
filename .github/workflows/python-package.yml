@@ -9,7 +9,6 @@ on:
       - published  
 
 jobs:
-
   build:
     runs-on: ubuntu-latest
 
@@ -32,3 +31,14 @@ jobs:
       with:
         name: wheel-artifacts
         path: wheels/*.whl
+
+    - name: Configure Git
+      run: |
+        git config --global user.email ${{ secrets.GIT_USER_EMAIL }}
+        git config --global user.name ${{ secrets.GIT_USER_NAME }}
+        
+    - name: Commit and Push Wheel Files
+      run: |
+        git add wheels/*.whl
+        git commit -m "Add wheel artifacts"
+        git push origin main
